@@ -1,4 +1,4 @@
-# Introduction to Statistics
+# Getting Started with Descriptive Statistics
 This is a repository which contains all the materials to be used in getting started with descriptive statistics course. This course is run by Christopher A Oldnall (chris.oldnall@ed.ac.uk) and Aybuke Atalay (aybuke.atalay@ed.ac.uk). If you notice any mistakes or have any recommendations or comments please get in touch. 
 
 For this course, you will need to use the R programming language. There is an expectation that you are familiar with the r-environment but not one particular style or any packages in particular. In order to use R there are some instructions below:
@@ -6,8 +6,6 @@ For this course, you will need to use the R programming language. There is an ex
 ## License
 
 All material collected here is free to use but is covered by a License: [![License: CC BY-NC 4.0](https://licensebuttons.net/l/by-nc/4.0/80x15.png)](https://creativecommons.org/licenses/by-nc/4.0/) license
-
-
 
 ## On Noteable
 

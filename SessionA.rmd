@@ -1,5 +1,5 @@
 ---
-title: "Session A - What is a summary statistic."
+title: "Session A - What are summary statistics."
 author: <INSERT NAME>
 output: pdf_document
 ---
@@ -79,41 +79,3 @@ Your Answer:
 ```{r CatsStats2}
 
 ```
--------------
-
-Now that we know how to summarise individual variables, we may want to start to look at relationships between variables. The go-to method to do this is a scatterplot. Run the code below and see what it does.
-
-```{r ScatterPlot}
-plot1 <- cats %>%
-  ggplot(aes(x = Bwt, y = Hwt)) +
-  geom_point()
-
-plot1
-```
-
-### Exercise 4
-Comment on the relationship between body weight and heart weight, using the plot.
-
-Your Answer:
-
--------------
-
-### Exercise 5
-Amend the code given above, to colour the points on the plot by the sex of the cat. It may be useful to look at the documentation for the ggplot package. We do this by placing a question mark next to the package name and running the code, ie. "?ggplot".
-
-Your Answer:
-```{r ScatterPlot2}
-
-```
--------------
-
-### Exercise 6
-Once again amend the code. This time make it so that there are two plots which show two different the points seperated by the sex of the cats. Do you notice anything different from when they were on one plot? Write a short explanation.
-[Hint: Look up what 'facet_wrap' does.]
-
-Your Answer:
-```{r ScatterPlot3}
-
-```
-
--------------

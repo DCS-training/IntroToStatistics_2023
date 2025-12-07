@@ -1,5 +1,5 @@
 ---
-title: "Session B - Identifying distributions."
+title: "Session B - Identifying distributions. (SOLUTIONS)"
 author: <INSERT NAME>
 output: pdf_document
 ---
@@ -8,54 +8,82 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Throughout this course we will use a package called 'tidyverse'. This is a 'superpackage' which contains lots of other packages with lots of functions. If you haven't installed this already then you need to go ahead and run the line below. You only need to install a package once and afterwards should use a '#' before it to stop it from ever running again.
+Throughout this course we will use a package called tidyverse, a 'superpackage' containing tools for data manipulation and visualisation. Remember you only need to install a package once, and afterwards you should comment out the install line.
 
 ```{r Tidyverse Install}
-#install.packages("tidyverse")
-#install.packages("tidyverse") <- Make it look like this once you have it installed.
+# install.packages("tidyverse")
+# install.packages("palmerpenguins")
 ```
-
-You will notice in your console that the section above appeared in a 'grey' area. This is because this is an R Markdown document. This is represented by the file extension .Rmd. Meanwhile there are also R Scripts (represented by .R extensions). Typically when writing code for publishable purposes or for software we have a series of R Scripts, however R markdown files are becomming more flavoursome when examining unqiue datasets since a neater overview can be given, it also allows for a neat PDF (or other document type) to be an output showing text, code and code output.
-
-Having installed tidyverse earlier, we must still load in the package for our system to use it. We do that with the 'library' command - this is a built in R function. Let's do that now below, noting we do not need to use the quotes to load it in:
 
 ```{r Tidyverse Loading}
 library(tidyverse)
+library(palmerpenguins)
 ```
 
-Now that we know how to summarise individual variables, we may want to start to look at relationships between variables. The go-to method to do this is a scatterplot. Run the code below and see what it does.
+In Session A we summarised variables using means, medians, modes and standard deviations. Now we move to identifying the shape of a distribution, as introduced in the slides (e.g. symmetric, skew left, skew right, multimodal)
 
-```{r ScatterPlot}
-plot1 <- cats %>%
-  ggplot(aes(x = Bwt, y = Hwt)) +
-  geom_point()
+A histogram is the simplest tool for this.
 
-plot1
+```{r HistogramBasic}
+ggplot(penguins, aes(x = bill_length_mm)) +
+  geom_histogram(bins = 20, fill = "steelblue", colour = "white")
 ```
 
-### Exercise 4
-Comment on the relationship between body weight and heart weight, using the plot.
+### Exercise 1
+Looking at the histogram above, describe the distribution of bill length. Is it symmetric, skewed, or multimodal?
 
 Your Answer:
+
+-------------
+
+Density plots give a smooth approximation of the histogram.
+
+```{r DensityPlot}
+ggplot(penguins, aes(x = bill_length_mm)) +
+  geom_density(fill = "orange", alpha = 0.4)
+```
+
+### Exercise 2
+Compare the histogram and the density plot. What additional detail does the density plot reveal, if any?
+
+Your Answer:
+
+-------------
+
+### Exercise 3
+We want to see how different species vary in bill length. Create three separate histograms, one for each species.
+Use facet_wrap(~species) to help you.
+
+Your Answer:
+```{r GroupedHistExercise}
+
+```
+
+-------------
+
+### Exercise 4
+
+Create your own scatterplot of:
+- x-axis: flipper_length_mm
+- y-axis: bill_length_mm
+
+Then add transparency (alpha = 0.6) and increase point size.
+
+Your Answer:
+```{r ScatterplotExercise}
+
+```
 
 -------------
 
 ### Exercise 5
-Amend the code given above, to colour the points on the plot by the sex of the cat. It may be useful to look at the documentation for the ggplot package. We do this by placing a question mark next to the package name and running the code, ie. "?ggplot".
+A Q-Q plot helps identify whether a variable follows a normal distribution. Create a Q-Q plot for bill_length_mm. 
 
 Your Answer:
-```{r ScatterPlot2}
-
-```
--------------
-
-### Exercise 6
-Once again amend the code. This time make it so that there are two plots which show two different the points seperated by the sex of the cats. Do you notice anything different from when they were on one plot? Write a short explanation.
-[Hint: Look up what 'facet_wrap' does.]
-
-Your Answer:
-```{r ScatterPlot3}
+```{r QQPlotExercise}
 
 ```
 
 -------------
+
+Excellent — you've now actively coded multiple tools for identifying and comparing distributions.

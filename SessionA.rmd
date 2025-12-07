@@ -1,6 +1,6 @@
 ---
-title: "Session A - What are summary statistics."
-author: <INSERT NAME>
+title: "Session A – What Are Summary Statistics?"
+author: "<INSERT NAME>"
 output: pdf_document
 ---
 
@@ -8,74 +8,84 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Throughout this course we will use a package called 'tidyverse'. This is a 'superpackage' which contains lots of other packages with lots of functions. If you haven't installed this already then you need to go ahead and run the line below. You only need to install a package once and afterwards should use a '#' before it to stop it from ever running again.
+In this session we will learn how to summarise data using measures of central tendency (mean, median, mode) and measures of spread (range, IQR, standard deviation). This helps reduce thousands of data points into a small set of meaningful numbers.
 
-```{r Tidyverse Install}
-#install.packages("tidyverse")
-#install.packages("tidyverse") <- Make it look like this once you have it installed.
+We will work with the palmerpenguins dataset — a fun and widely used dataset containing measurements from penguins in Antarctica.
+
+
+```{r PackageInstall}
+# install.packages("tidyverse")
 ```
 
 You will notice in your console that the section above appeared in a 'grey' area. This is because this is an R Markdown document. This is represented by the file extension .Rmd. Meanwhile there are also R Scripts (represented by .R extensions). Typically when writing code for publishable purposes or for software we have a series of R Scripts, however R markdown files are becomming more flavoursome when examining unqiue datasets since a neater overview can be given, it also allows for a neat PDF (or other document type) to be an output showing text, code and code output.
 
 Having installed tidyverse earlier, we must still load in the package for our system to use it. We do that with the 'library' command - this is a built in R function. Let's do that now below, noting we do not need to use the quotes to load it in:
 
-```{r Tidyverse Loading}
+```{r PackageLoading}
 library(tidyverse)
 ```
 
 You may have additionally noticed that to create a chunk of code in an R Markdown document we must use two sets of 3 `s with a set of curly braces following the first set of 3 with 'r' written in it. This is telling the interpreter that this is a block of R code.
 
 ### Exercise 1
-Now that you know the basics of how to install and load packages, have a go at writing a code block below to install and load the package called "MASS". This will be the data set we will work with for the rest of this tutorial.
+Now that you know the basics of how to install and load packages, have a go at writing a code block below to install and load the package called “palmerpenguins”. This will be the dataset we will work with for the rest of this tutorial.
 
 Your Answer:
-```{r MASS Loading}
-# install.packages("MASS")
-library(MASS)
+```{r Penguins Loading}
+
 ```
 
 -------------
 
-"MASS" is a package that has been curated for learning R. It contains several data sources. Typically we will not always install and load in data packages like that, but in future weeks we will touch upon other types of R data. For this tutorial we will be working with the cats data set. Run the below to select this from "MASS."
 
-```{r CatsDataSelection}
-data("cats")
-```
-
--------------
-
-Any great statistician or data scientist will, as the first thing to do, is load in and get overview summary of the data. Run the below and answer the exercise.
-
-```{r CatsOverview}
-str(cats)
-head(cats)
-tail(cats)
-summary(cats)
+```{r PenguinsOverview}
+str(penguins)
+head(penguins)
+tail(penguins)
+summary(penguins)
 ```
 
 ### Exercise 2
-Provide an overview of the data set cats, in particular discuss how many observartions and variables there are, as well as giving their data types.
+Use the information from the code above, to provide an overview of the penguins dataset. In particular, discuss how many observations and variables there are, as well as giving their data types.
 
 Your Answer:
 
 
 -------------
 
-Now we know how to get some built in summary features, we may want to level up and become more statistical. That is what about looking at the mean and standard deviation of our data? This is incredibly important. Run the below and see what comes out.
+Using the penguins data, calculate the mean, median and mode of the variable flipper_length_mm.
 
-```{r CatsStats}
-HeartSummary <- cats %>%
-    summarise(cats_heart_mean = mean(Hwt), cats_heart_sd = sd(Hwt))
-
-HeartSummary
+```{r PenguinsStats}
+PenguinFlipperSummary <- penguins %>%
+    summarise(penguin_flipper_length_mean = mean(flipper_length_mm, na.rm = TRUE), penguin_flipper_length_sd = sd(flipper_length_mm, na.rm = TRUE))
+PenguinFlipperSummary
 ```
 
 Did you notice some weird syntax above? Let's address that. In R we use '<-' to assign a value to a variable. Above we have also started to use the tidyverse. '%>%' is known as a pipe and allows us to more intuatively access the data we have by 'piping into it' and then applying some functions.
 
 ### Exercise 3
-Analogously to above, provide a summary for the body weight variable in the cats data set.
+Analogously to above, provide a summary for the bill length variable in the penguins data set.
 
 Your Answer:
-```{r CatsStats2}
+```{r PenguinsStats2}
 
 ```
+
+### Exercise 4
+Compare different measures of spread for the flipper_length_mm variable.
+Calculate the range, IQR, and standard deviation.
+
+Your Answer:
+```{r PenguinsSpread}
+
+```
+Here we calculated the range, IQR, and standard deviation for the flipper_length_mm variable. The range gives us the minimum and maximum values, the IQR provides the spread of the middle 50% of the data, and the standard deviation indicates how much the values deviate from the mean on average.
+
+### Exercise 5
+Choose any numeric variable from the penguins dataset and calculate:
+- Mean
+- Median
+- Mode
+- Range
+- IQR
+- Standard deviation

@@ -1,0 +1,94 @@
+---
+title: "Session B - Identifying distributions. (SOLUTIONS)"
+author: <INSERT NAME>
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Throughout this course we will use a package called tidyverse, a 'superpackage' containing tools for data manipulation and visualisation. Remember you only need to install a package once, and afterwards you should comment out the install line.
+
+```{r Tidyverse Install}
+# install.packages("tidyverse")
+# install.packages("palmerpenguins")
+```
+
+```{r Tidyverse Loading}
+library(tidyverse)
+library(palmerpenguins)
+```
+
+In Session A we summarised variables using means, medians, modes and standard deviations. Now we move to identifying the shape of a distribution, as introduced in the slides (e.g. symmetric, skew left, skew right, multimodal)
+
+A histogram is the simplest tool for this.
+
+```{r HistogramBasic}
+ggplot(penguins, aes(x = bill_length_mm)) +
+  geom_histogram(bins = 20, fill = "steelblue", colour = "white")
+```
+
+### Exercise 1
+Looking at the histogram above, describe the distribution of bill length. Is it symmetric, skewed, or multimodal?
+
+Your Answer:
+
+-------------
+
+Density plots give a smooth approximation of the histogram.
+
+```{r DensityPlot}
+ggplot(penguins, aes(x = bill_length_mm)) +
+  geom_density(fill = "orange", alpha = 0.4)
+```
+
+### Exercise 2
+Compare the histogram and the density plot. What additional detail does the density plot reveal, if any?
+
+Your Answer:
+
+-------------
+
+### Exercise 3
+We want to see how different species vary in bill length. Create three separate histograms, one for each species.
+Use facet_wrap(~species) to help you.
+
+Your Answer:
+```{r GroupedHistExercise}
+ggplot(penguins, aes(x = bill_length_mm)) +
+  geom_histogram(bins = 20, fill = "steelblue", colour = "white") +
+  facet_wrap(~species)
+```
+
+-------------
+
+### Exercise 4
+
+Create your own scatterplot of:
+- x-axis: flipper_length_mm
+- y-axis: bill_length_mm
+
+Then add transparency (alpha = 0.6) and increase point size.
+
+Your Answer:
+```{r ScatterplotExercise}
+ggplot(penguins, aes(x = flipper_length_mm, y = bill_length_mm)) +
+  geom_point(alpha = 0.6, size = 2)
+```
+
+-------------
+
+### Exercise 5
+A Q-Q plot helps identify whether a variable follows a normal distribution. Create a Q-Q plot for bill_length_mm. 
+
+Your Answer:
+```{r QQPlotExercise}
+ggplot(penguins, aes(sample = bill_length_mm)) +
+  geom_qq() +
+  geom_qq_line()
+```
+
+-------------
+
+Excellent — you've now actively coded multiple tools for identifying and comparing distributions.
